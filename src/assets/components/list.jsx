@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { club } from '../../data';
 import Avartar from './Avatar';
-import SortTable from './SortTable';
 
 
 function List() {
@@ -10,25 +9,26 @@ function List() {
 
 
     const [team, setTeam] = useState()
-    const [clubs, setClub] = useState()
-    const [count, setCount] = useState(0)
+    const [flag, setFlag] = useState(0) //I dont know why it's here, but it makes all buttons work. It also works when i use [count,setCount] instead of flag
 
-    console.log(count);
+    // console.log(flag);
 
     const sortTeamACS = () => {
-        setTeam(club.sort((a, b) => b.point - a.point))
-        setCount((count) => count + 1)
+        if (flag !== 1)
+            setTeam(club.sort((a, b) => b.point - a.point))
+        setFlag(1)
     }
 
     const sortTeamDCS = () => {
-        setTeam(club.sort((a, b) => a.point - b.point))
-        setCount((count) => count - 1)
+        if (flag !== -1)
+            setTeam(club.sort((a, b) => a.point - b.point))
+        setFlag(-1)
     }
 
     const unSort = () => {
-        setClub(club.sort((a, b) => a.id - b.id))
-        setCount((count) => count = 0)
-
+        if (flag !== 0)
+            setTeam(club.sort((a, b) => a.id - b.id))
+        setFlag(0)
     }
 
 
