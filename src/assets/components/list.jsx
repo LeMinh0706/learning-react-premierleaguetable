@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { club } from '../../data';
 import Avartar from './Avatar';
-import SortTable from './SortTable';
 
 
 function List() {
