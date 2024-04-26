@@ -10,10 +10,25 @@ function List() {
 
 
     const [team, setTeam] = useState()
+    const [clubs, setClub] = useState()
+    const [count, setCount] = useState(0)
 
+    console.log(count);
 
-    const sortTeam = () => {
+    const sortTeamACS = () => {
         setTeam(club.sort((a, b) => b.point - a.point))
+        setCount((count) => count + 1)
+    }
+
+    const sortTeamDCS = () => {
+        setTeam(club.sort((a, b) => a.point - b.point))
+        setCount((count) => count - 1)
+    }
+
+    const unSort = () => {
+        setClub(club.sort((a, b) => a.id - b.id))
+        setCount((count) => count = 0)
+
     }
 
 
@@ -23,7 +38,13 @@ function List() {
             {/* {club.map((data, index) => {
                 return <p>{data.name}</p>
             })} */}
-            <button className='text-white border-black border-2 bg-slate-600 p-3' onClick={sortTeam}>Sắp xếp</button>
+            <div className='flex gap-4'>
+
+                <button className='text-white border-black border-2 bg-slate-600 p-3 font-bold' onClick={sortTeamACS}>Sắp xếp tăng</button>
+                <button className='text-white border-black border-2 bg-slate-600 p-3 font-bold' onClick={unSort}>Trở lại</button>
+                <button className='text-white border-black border-2 bg-slate-600 p-3 font-bold' onClick={sortTeamDCS}>Sắp xếp giảm</button>
+
+            </div>
 
             <table className='border-separate'>
                 <thead>
